@@ -1,0 +1,120 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Wlacome </h3>
+    <a href="open_signup">SIGN UP</a>
+    <a href="open_signin">SIGN IN</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mealmate - Welcome</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            padding: 40px 32px 32px 32px;
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ff7e5f;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        a {
+            display: block;
+            padding: 14px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(252,182,159,0.08);
+        }
+
+        a[href="open_signup"] {
+            background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+            color: #fff;
+        }
+
+        a[href="open_signup"]:hover {
+            background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
+            box-shadow: 0 4px 16px rgba(255,126,95,0.18);
+        }
+
+        a[href="open_signin"] {
+            background: #fff;
+            color: #ff7e5f;
+            border: 2px solid #ff7e5f;
+        }
+
+        a[href="open_signin"]:hover {
+            background: #ff7e5f;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(255,126,95,0.12);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 8px 20px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Mealmate</div>
+        <h3>Welcome to Mealmate!</h3>
+        <div class="btn-group">
+            <a href="open_signup">SIGN UP</a>
+            <a href="open_signin">SIGN IN</a>
+        </div>
+    </div>
+</body>
+</html>
