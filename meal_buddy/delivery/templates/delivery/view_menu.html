@@ -241,8 +241,8 @@
                             {% endif %}
                           </td>
                           <td>
-                            <a class="action-btn edit" href="">Edit</a>
-                            <a class="action-btn delete" href="{% url 'delete_item' item.id %}">Delete</a>
+                            <button class="action-btn edit" name="">ADD CART</button>
+                           
                           </td>
                         </tr>
                         {% endfor %}
@@ -252,42 +252,6 @@
             </div>
         </div>
 
-        <div class="form-container">
-            <h1>Add New Menu Item</h1>
-            <p class="subtitle">Fill out the form below to add a new item</p>
-            
-
-            <form action="{% url 'update_menu' restaurant.id%}" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Item Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Enter item name" required>
-
-                </div>
-                
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" id="description" name ="description" placeholder="Enter item description" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="number" id="price" name ="price" placeholder="Enter price" step="0.01" required>
-                </div>
-                
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="is_veg" name="vegetarian">
-                    <label for="is_veg" >Vegetarian</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="picture">Image URL</label>
-                    <input type="url" id="picture" name ="picture" placeholder="Enter image URL">
-                </div>
-                
-                <button type="submit" class="submit-btn">Add Item</button>
-            </form>
-        </div>
     </div>
 </body>
 </html> 

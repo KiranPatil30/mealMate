@@ -46,6 +46,8 @@ def signup(request):
 
 
 def signin(request):
+    restaurants = Restaurant.objects.all()
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -57,7 +59,7 @@ def signin(request):
             if username == "admin":
                     return render(request, 'delivery/admin_home.html')
             else:
-                    return render(request, 'delivery/customer_home.html')
+                    return render(request, 'delivery/customer_home.html',{'restaurants': restaurants,'username':username})
             # else:
             #     return HttpResponse("Login failed")
 
@@ -122,11 +124,13 @@ def open_delete_restaurant(request, res_id):
 
 def open_update_menu(request, res_id):
     restaurant = Restaurant.objects.get(id=res_id)
-    itemList = Item.objects.filter(restaurant=restaurant)
+    # itemList = Item.objects.filter(restaurant=restaurant)
+    itemList = restaurant.items.all()
+
     return render(request, 'delivery/update_menu.html', {"itemList": itemList, "restaurant": restaurant})
 
-    itemList = Item.objects.all()
-    return render(request, 'delivery/update_menu.html', {"itemList" : itemList,"restaurant": restaurant})
+    # itemList = Item.objects.all()
+    # return render(request, 'delivery/update_menu.html', {"itemList" : itemList,"restaurant": restaurant})
 
 
 def update_menu(request, res_id):
@@ -156,3 +160,24 @@ def update_menu(request, res_id):
                 )
                
     return render(request, 'delivery/admin_home.html')
+
+
+def open_customer_menu(request):
+    restaurants = Restaurant.objects.all()
+    return render(request, 'delivery/customer_home.html', {'restaurants': restaurants})
+
+
+
+def open_view_cutomer_menu(request,res_id):
+    restaurant = Restaurant.objects.get(id=res_id)
+    # itemList = Item.objects.filter(restaurant=restaurant)
+    itemList = restaurant.items.all()
+
+    return render(request, 'delivery/view_menu.html', {"itemList": itemList, "restaurant": restaurant})
+
+
+
+def delete_item(request, res_id):
+    item = Item.objects.get(id=res_id)
+    item.delete()
+    return redirect('open_show_restaurant')

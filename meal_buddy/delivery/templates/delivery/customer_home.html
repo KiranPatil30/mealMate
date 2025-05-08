@@ -3,9 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Restaurants</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        img {
+            width: 100px;
+            height: auto;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the cutomer Home Page </h1>
+    <h1 style="text-align:center;">Restaurant List</h1>
+
+    <h3 style="text-align:center;">Welcome  {{username}}</h3>
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Restaurant Name</th>
+                <th>Picture</th>
+                <th>Cuisine</th>
+                <th>Rating</th>
+                <th>View</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in restaurants %}
+            <tr>
+                <td>{{ r.name }}</td>
+                <td><img src="{{ r.picture }}" alt="Image of {{ r.name }}"></td>
+                <td>{{ r.cuisine }}</td>
+                <td>{{ r.rating }}</td>
+                <td>
+                    <a href="{% url 'open_view_cutomer_menu' r.id %}">View</a>
+                    
+                    
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
