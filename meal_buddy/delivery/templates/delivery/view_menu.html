@@ -241,7 +241,7 @@
                             {% endif %}
                           </td>
                           <td>
-                            <button class="action-btn edit" name="">ADD CART</button>
+                            <a class="action-btn edit" href="{% url 'add_to_cart' item.id username %}">ADD CART</a>
                            
                           </td>
                         </tr>

@@ -23,14 +23,14 @@ urlpatterns = [
     path('update_menu/<int:res_id>', views.update_menu, name='update_menu'),
 
     path('open_customer_menu/', views.open_customer_menu, name='open_customer_menu'),
-    path('open_view_cutomer_menu/<int:res_id>', views.open_view_cutomer_menu, name='open_view_cutomer_menu'),
-    path('open_view_cutomer_menu/<int:res_id>', views.open_view_cutomer_menu, name='open_view_cutomer_menu'),
 
-    # path('edit_items/<int:res_id>', views.update_menu, name='update_menu'),
+    path('open_view_cutomer_menu/<int:res_id>/<str:username>', views.open_view_cutomer_menu, name='open_view_cutomer_menu'),
+    path('add_to_cart/<int:item_id>/<str:username>', views.add_to_cart, name='add_to_cart'),
 
     path('delete_item/<int:res_id>', views.delete_item, name='delete_item'),
 
-
+    path('add_to_cart/<int:res_id>', views.add_to_cart, name='add_to_cart'),
+    
 
 
     

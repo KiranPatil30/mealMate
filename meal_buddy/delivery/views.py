@@ -168,12 +168,14 @@ def open_customer_menu(request):
 
 
 
-def open_view_cutomer_menu(request,res_id):
+def open_view_cutomer_menu(request,res_id,username):
     restaurant = Restaurant.objects.get(id=res_id)
     # itemList = Item.objects.filter(restaurant=restaurant)
     itemList = restaurant.items.all()
 
-    return render(request, 'delivery/view_menu.html', {"itemList": itemList, "restaurant": restaurant})
+    return render(request, 'delivery/view_menu.html', {"itemList": itemList, "username": username})
+
+
 
 
 
@@ -181,3 +183,8 @@ def delete_item(request, res_id):
     restaurant = Item.objects.get(id=res_id)
     restaurant.delete()
     return HttpResponse("Deleted Successfull")
+
+
+def add_to_cart(request,item_id,username):
+     return HttpResponse("Added to Cart")
+

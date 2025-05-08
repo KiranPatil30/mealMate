@@ -27,7 +27,7 @@
 <body>
     <h1 style="text-align:center;">Restaurant List</h1>
 
-    <h3 style="text-align:center;">Welcome  {{username}}</h3>
+    <h3 style="text-align:center;">Welcome  {{username}}  !!!!</h3>
    
     <table>
         <thead>
@@ -48,7 +48,7 @@
                 <td>{{ r.cuisine }}</td>
                 <td>{{ r.rating }}</td>
                 <td>
-                    <a href="{% url 'open_view_cutomer_menu' r.id %}">View</a>
+                    <a href="{% url 'open_view_cutomer_menu' r.id username %}">View</a>
                     
                     
 
