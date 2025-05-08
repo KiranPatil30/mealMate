@@ -178,6 +178,6 @@ def open_view_cutomer_menu(request,res_id):
 
 
 def delete_item(request, res_id):
-    item = Item.objects.get(id=res_id)
-    item.delete()
-    return redirect('open_show_restaurant')
+    restaurant = Item.objects.get(id=res_id)
+    restaurant.delete()
+    return HttpResponse("Deleted Successfull")
