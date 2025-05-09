@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import Customer, Item, Restaurant
+from .models import Cart, CartItem, Customer, Item, Restaurant
 
 
 def index(request):
@@ -185,6 +185,90 @@ def delete_item(request, res_id):
     return HttpResponse("Deleted Successfull")
 
 
-def add_to_cart(request,item_id,username):
-     return HttpResponse("Added to Cart")
+# def add_to_cart(request,item_id,username):
+#      item = Item.objects.get(id=item_id)
+#      customer = Customer.objects.get(user=username)
+     
+#      cart, created = Cart.objects.get_or_create(customer=customer)
 
+#      cart.items.add(item)
+#     #  return HttpResponse("Added to Cart")
+#      return render(request, 'delivery/added_cart.html', {'item': item,
+#     'cart': cart,
+#     'customer': customer})
+
+def add_to_cart(request, item_id, username):
+    item = Item.objects.get(id=item_id)
+    customer = Customer.objects.get(username=username)
+    
+    # Ensure the customer has a cart
+    cart, created = Cart.objects.get_or_create(customer=customer)
+    
+    # Check if the item already exists in the cart
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, item=item)
+    
+    if not created:  # If it already exists, increase the quantity
+        cart_item.quantity += 1
+        cart_item.save()
+    
+    return render(request, 'delivery/added_cart.html', {'cart': cart})
+
+
+
+def show_cart(request, username):
+    customer = Customer.objects.get(username=username)
+    cart = Cart.objects.get(customer=customer)
+    items_in_cart = cart.items.all()
+
+    return render(request, 'delivery/show_cart.html', {
+        'customer': customer,
+        'cart': cart,
+        'items': items_in_cart
+    })
+
+
+
+
+def remove_from_cart(request, item_id, username):
+    customer = get_object_or_404(Customer, username=username)
+    cart = get_object_or_404(Cart, customer=customer)
+    cart_item = get_object_or_404(CartItem, cart=cart, item__id=item_id)
+
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1  # ➖ Decrease quantity
+        cart_item.save()
+    else:
+        cart_item.delete()  # 🗑️ Remove if quantity 0
+
+    return redirect('show_cart', username=username)
+
+# def show_cart(request, username):
+#     customer = get_object_or_404(Customer, username=username)
+#     cart = Cart.objects.get(customer=customer)
+#     cart_items = cart.cart_items.select_related('item')
+
+#     return render(request, 'delivery/cart.html', {
+#         'cart': cart,
+#         'cart_items': cart_items,
+#         'customer': customer
+#     })
+
+def show_cart(request, username):
+    # Fetch the customer
+    customer = Customer.objects.get(username=username)
+
+    # Get the cart of the customer
+    cart = Cart.objects.get(customer=customer)
+    
+    # Get all the cart items for the customer's cart
+    cart_items = cart.cart_items.all()  # Assuming CartItem is a related name for cart_items
+    
+    # Calculate the grand total
+    grand_total = cart.total_price()  # Assuming this is the method to calculate total price
+
+    # Pass the cart items and grand total to the template
+    return render(request, 'delivery/show_cart.html', {
+        'cart_items': cart_items,
+        'grand_total': grand_total,
+        'customer': customer
+    })

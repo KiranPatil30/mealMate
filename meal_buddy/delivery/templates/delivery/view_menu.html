@@ -210,8 +210,11 @@
      <div class="container">
         <div class="table-container">
             <h1>Menu Items</h1>
+            <h2>Welocome {{username}}</h2>
             <p class="subtitle">View and manage your menu items</p>
-            
+            <a href="{% url 'show_cart' username %}">Go to cart</a>
+
+
             <div class="table-wrapper">
                 <table>
                     <thead>
