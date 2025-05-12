@@ -25,16 +25,13 @@ urlpatterns = [
     path('open_customer_menu/', views.open_customer_menu, name='open_customer_menu'),
 
     path('open_view_cutomer_menu/<int:res_id>/<str:username>', views.open_view_cutomer_menu, name='open_view_cutomer_menu'),
-    path('add_to_cart/<int:item_id>/<str:username>', views.add_to_cart, name='add_to_cart'),
 
     path('delete_item/<int:res_id>', views.delete_item, name='delete_item'),
-    path('add_to_cart/<int:res_id>', views.add_to_cart, name='add_to_cart'),
-    path('show_cart/<str:username>', views.show_cart, name='show_cart'),
-
-    path('cart/<str:username>/', views.show_cart, name='show_cart'),
+    # path('add_to_cart/<int:res_id>', views.add_to_cart, name='add_to_cart'),
+    # path('cart/<str:username>/', views.show_cart, name='show_cart'),
     path('add_to_cart/<int:item_id>/<str:username>/', views.add_to_cart, name='add_to_cart'),
-    path('remove_from_cart/<int:item_id>/<str:username>/', views.remove_from_cart, name='remove_from_cart'),
-
+    path('show_cart/<str:username>', views.show_cart, name='show_cart'),
+    path('checkout/<str:username>', views.checkout, name='checkout'),
 
     
 
