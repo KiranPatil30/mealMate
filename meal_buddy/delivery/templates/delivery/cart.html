@@ -217,7 +217,7 @@
                 <div class="table-wrapper">
                     <table>
                         <thead>
-                            <tr> 
+                            <tr>
                                 <th>Restrarauant Image</th>
                                 <th>Item NAME</th>
                                 <th>Description</th>
@@ -239,15 +239,16 @@
                             {% endfor %}
                         </tbody>
 
-                        <form action="{% url 'checkout' username%}">
-
+                        <form action="{% url 'checkout' username %}"
+                            method="post">
+                            {% csrf_token %}
                             <input type="submit" value="CHECK OUT">
                         </form>
+
                     </table>
                 </div>
             </div>
 
-           
         </div>
     </body>
 </html>
